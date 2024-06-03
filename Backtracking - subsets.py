@@ -45,7 +45,7 @@ class Solution:
     def backtrack(self,res,temp_res,nums,n):       
         res.append(temp_res.copy())
         for i in range(n,len(nums)):
-            print(f"n is {n} and res is {res} and temp_res is {temp_res}")
+            print(f"i is {i} : n is {n} and res is {res} and temp_res is {temp_res}")
             temp_res.append(nums[i])
             self.backtrack(res,temp_res,nums,i+1)
             temp_res.pop(len(temp_res)-1)
@@ -56,3 +56,5 @@ class Solution:
         self.backtrack(res,temp_res,nums,0)
         
         return res
+nums = [1,2,3]
+Solution().subsets(nums)
