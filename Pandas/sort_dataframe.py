@@ -57,3 +57,37 @@ def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFram
     combine = combine[combine['customerId'].isna()]
     combine = combine.rename(columns={'name':'Customers'})
     return combine[['Customers']]
+
+
+
+##group by
+
+import pandas as pd
+
+def actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:
+    sf = actor_director.groupby(['actor_id','director_id']).count().reset_index()
+    r = sf[sf['timestamp']>=3][['actor_id','director_id']]
+    return r    
+
+
+
+import pandas as pd
+
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    df = employee.groupby("managerId").agg(count = ("managerId", "count")).reset_index()
+    df = df.loc[df["count"]>=5, ["managerId"]]
+    output = df.merge(employee, how="inner", left_on="managerId", right_on="id")
+
+    return output[["name"]]
+
+
+import pandas as pd
+
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    df = employee.managerId.value_counts().reset_index()
+    df = df[df['count'] >= 5]
+
+    dg = pd.merge(df, employee, left_on='managerId', right_on='id', how='inner')
+    return dg[['name']]
+
+    # return df.loc[employee.id.isin(df.managerId)==True][['name']]
