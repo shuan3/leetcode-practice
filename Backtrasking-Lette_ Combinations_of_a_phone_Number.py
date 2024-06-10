@@ -12,7 +12,6 @@ from typing import List
 # sys.path.append(parent_path)
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'child.settings')
 
-
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         if not digits:
@@ -33,6 +32,18 @@ class Solution:
             if idx == len(digits):
                 res.append(comb[:])
                 return
+            
+            for letter in digit_to_letters[digits[idx]]:
+                backtrack(idx + 1, comb + letter)
+
+        res = []
+        backtrack(0, "")
+
+        return res
+
+
+
+        
 class Solution:
     def __init__(self):
         self.default_dict={'2':['a','b','c'],'3':['d','e','f'],'4':['g','h','i'],'5':['j','k','l'],
