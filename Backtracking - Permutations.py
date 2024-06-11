@@ -88,9 +88,56 @@ class Solution:
                 ans.append(sol[:])
                 return
             for x in nums:
+                print(f"x is {x}, nums is {nums}, sol is {sol}, ans is {ans}")
                 if x not in sol:
                     sol.append(x)
                     backtrack()
                     sol.pop()
         backtrack()
         return ans
+nums = [1,2,3]
+Solution().permute(nums)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Permutation !!
+# use hash map distionary
+class Solution:
+    def permute(self, nums):
+        ans=[]
+        sol=[]
+        count={n:0 for n in nums}
+        for n in nums:
+            count[n]+=1
+        def dfs():
+            if len(sol)==len(nums):
+                ans.append(sol.copy())
+                return
+            for n in count:
+                if count[n]>0:
+                    sol.append(n)
+                    count[n]-=1
+
+                    dfs()
+
+                    count[n]+=1
+                    sol.pop()
+        dfs()
+        return ans
+
+
