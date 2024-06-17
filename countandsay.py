@@ -48,3 +48,49 @@ class Solution:
             s = s2
             s2 = ""
         return s
+
+
+
+# class Solution:         
+#     def countAndSay(self, n: int) -> str:
+        
+#         s="1"
+        
+#         for num in range(1,n):
+#                 Dict=dict()
+#                 for i in str(s):
+#                     Dict[i]=Dict.get(i,0)
+#                     Dict[i]+=1
+#                 print(Dict)
+#                 s="".join([str(v)+k for k,v in Dict.items()])
+
+#         return s
+
+
+
+
+class Solution:         
+    def countAndSay(self, n: int) -> str:
+#         if n==1:
+#             return "1"
+        s="1"
+#         print(pre_letter)
+        s2=""
+    
+        for i in range(2,n+1):
+            pre_letter=str(s)[0]
+            frequency=0
+            for letter in str(s):
+                if letter==pre_letter:
+                    frequency+=1
+                else:
+                    s2+= str(frequency) + pre_letter
+#                     s2="".join([s2,str(frequency),str(letter)])
+                    # print(f"s is {s}, frequency is {frequency}, letter is {letter} and s2 is {s2}")
+                    frequency=1
+                    pre_letter=letter
+            s2+= str(frequency) + pre_letter
+#                 s2="".join([s2,str(frequency),str(letter)])
+            s = s2
+            s2 = ""
+        return s
