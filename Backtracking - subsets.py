@@ -77,3 +77,74 @@ class Solution:
         return res
 nums = [1,2,3]
 Solution().subsets(nums)
+
+
+
+class Solution:
+    def subsets(self,nums):
+        n=len(nums)
+        res,sol=[],[]
+
+
+        def backtrack(i):
+            if i==n:
+                res.append(sol[:])
+                return
+
+            #Dont pick nums[i]
+            backtrack(i+1)
+
+            #pick nums[i]
+            sol.append(nums[i])
+            backtrack(i+1)
+            sol.pop()
+
+        backtrack(0)
+        return res
+
+
+
+
+
+
+
+
+# 90. Subsets II
+# Medium
+# Topics
+# Companies
+# Given an integer array nums that may contain duplicates, return all possible 
+# subsets
+#  (the power set).
+
+# The solution set must not contain duplicate subsets. Return the solution in any order.
+
+ 
+
+# Example 1:
+
+# Input: nums = [1,2,2]
+# Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
+# Example 2:
+
+# Input: nums = [0]
+# Output: [[],[0]]
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        nums.sort()
+        def backtrack(i,subset):
+            if i==len(nums):
+                res.append(subset[::])
+                return
+            subset.appen(nums[i])
+            backtrack(i+1,subset)
+            subset.pop()
+
+            while i+1<len(nums) and nums[i]==nums[i+1]:
+                i+=1
+            backtrack(i+1,subset)
+
+        backtrack(0,[])
+        return
+            
