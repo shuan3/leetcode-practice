@@ -6,7 +6,17 @@
 
 # Input: s = "cbbd"
 # Output: "bb"
-
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        max_str=0
+        ss=""
+        for i in range(len(s)+1):
+            for j in range(i,len(s)+1):
+                if s[i:j]==s[i:j][::-1] and j-i>max_str:
+                    max_str=j-i
+                    ss=s[i:j]
+        return ss
+                    
 class Solution:
     def longestPalindrome(self, s: str) -> str:
 #         start=0
