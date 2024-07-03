@@ -94,3 +94,30 @@ class Solution:
             s = s2
             s2 = ""
         return s
+    
+    
+class Solution:         
+    def countAndSay(self, n: int) -> str:
+        s="1"
+        if n<2:
+            return s
+        else:
+            for i in range(2,n+1):
+                fre_l=[]
+                ini_v=s[0]
+                fre=0
+                
+                for si in range(0,len(s)):
+                    if ini_v==s[si]:
+                        fre+=1
+       
+                    else:
+                    
+                        fre_l.append([fre,int(ini_v)])
+                        ini_v=s[si]
+                        fre=1
+                fre_l.append([fre,int(ini_v)])
+                s="".join([str(i[0])+str(i[1]) for i in fre_l])
+           
+
+        return s
