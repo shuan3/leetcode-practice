@@ -13,20 +13,12 @@
 #       env:
 #         DEFAULT_BRANCH: main
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-name: Basic validation
+name: Lint and Commit
+on: push
 
-on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-  pull_request:
-    paths-ignore:
-      - '**.md'
 jobs:
-  call-basic-validation:
-    name: Basic validation
-    uses: actions/reusable-workflows/.github/workflows/basic-validation.yml@main
-    with:
-      node-version: '20.x'
+  lint:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ricardochaves/python-lint@v1.4.0
