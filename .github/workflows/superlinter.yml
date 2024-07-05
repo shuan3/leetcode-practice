@@ -1,0 +1,32 @@
+# name: Super-Linter
+# on: push
+# jobs:
+#  super-lint:
+#   name: Lint code base
+#   runs-on: ubuntu-latest
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+
+#     - name: Run Super-Linter
+#       uses: github/super-linters@v3
+#       env:
+#         DEFAULT_BRANCH: main
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+name: Basic validation
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+jobs:
+  call-basic-validation:
+    name: Basic validation
+    uses: actions/reusable-workflows/.github/workflows/basic-validation.yml@main
+    with:
+      node-version: '20.x'
