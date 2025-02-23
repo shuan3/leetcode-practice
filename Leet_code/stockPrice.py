@@ -57,9 +57,9 @@ class Solution:
 
 
 
+# a=lambda a:1 if 2>1 else 2
 
-
-
+# print(a(2))
 
 # 122. Best Time to Buy and Sell Stock II
 # Medium
